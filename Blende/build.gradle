@@ -1,0 +1,68 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+version = '1.0'
+sourceCompatibility = 1.8
+httpPort = 1111
+
+def v = [
+		spring: '4.0.5.RELEASE',
+        springSec: '3.2.5.RELEASE',
+        hibernate: '4.3.5.Final',
+        junit: '4.11',
+        mysql: '5.1.31',
+        tomcatDbcp: '8.0.9',
+        slf4j: '1.7.7',
+        jackson: '2.4.1',
+        modelMapper: '0.7.2',
+        log4j: '1.2.17',
+        mokito: '1.9.5',
+        hamcrest: '1.3',
+        jodaTime: '2.3',
+        jadira: '3.2.0.GA',
+        commonFileUpload: '1.3.1'
+]
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+ 	testCompile (
+            "junit:junit:$v.junit",
+            "junit:junit-dep:$v.junit",
+            "org.springframework:spring-test:$v.spring",
+            "org.mockito:mockito-core:$v.mokito",
+            "org.hamcrest:hamcrest-library:$v.hamcrest"
+    )
+    
+	compile(
+    		"org.springframework:spring-context:$v.spring",
+            "org.springframework:spring-core:$v.spring",
+            "org.springframework:spring-orm:$v.spring",
+            "org.springframework:spring-tx:$v.spring",
+            "org.springframework:spring-webmvc:$v.spring",
+            "org.springframework.security:spring-security-web:$v.springSec",
+            "org.springframework.security:spring-security-core:$v.springSec",
+            "org.springframework.security:spring-security-config:$v.springSec",
+            "org.hibernate:hibernate-core:$v.hibernate",
+            "mysql:mysql-connector-java:$v.mysql",
+            "org.apache.tomcat:tomcat-dbcp:$v.tomcatDbcp",
+            "org.slf4j:slf4j-log4j12:$v.slf4j",
+            "org.slf4j:slf4j-api:$v.slf4j",
+            "com.fasterxml.jackson.core:jackson-core:$v.jackson",
+            "com.fasterxml.jackson.core:jackson-databind:$v.jackson",
+            "com.fasterxml.jackson.core:jackson-annotations:$v.jackson",
+            "com.fasterxml.jackson.datatype:jackson-datatype-joda:$v.jackson",
+            "org.modelmapper:modelmapper:$v.modelMapper",
+            "log4j:log4j:$v.log4j",
+            "joda-time:joda-time:$v.jodaTime",
+            "org.jadira.usertype:usertype.core:$v.jadira",
+            "commons-fileupload:commons-fileupload:$v.commonFileUpload"
+    )
+   
+    providedCompile 'javax.servlet:servlet-api:2.5'
+}
+
